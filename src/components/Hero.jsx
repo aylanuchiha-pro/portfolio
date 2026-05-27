@@ -76,7 +76,7 @@ function MagneticBlob() {
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false);
-  const words = ["construit", "sécurise", "imagine", "protège"];
+  const words = ["construis", "sécurise", "développe", "protège"];
   const [wordIdx, setWordIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);

@@ -14,7 +14,7 @@ export default function Reveal({ children, delay = 0, direction = "up", style = 
           obs.unobserve(el);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: "0px 0px -60px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();

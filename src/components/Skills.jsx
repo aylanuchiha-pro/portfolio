@@ -164,15 +164,23 @@ export default function Skills() {
   return (
     <section id="skills" style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}>
       <SectionTitle number="03" label="compétences" title="Skills" />
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-        gap: 28,
-      }}>
+      <div
+        className="skills-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: 28,
+        }}
+      >
         {skillCategories.map((cat, i) => (
           <SkillCard key={cat.name} cat={cat} index={i} />
         ))}
       </div>
+      <style>{`
+        @media(max-width: 768px) {
+          .skills-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }

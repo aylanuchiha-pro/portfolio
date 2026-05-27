@@ -4,17 +4,10 @@ import { COLORS, fonts } from "../theme";
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [inDarkZone, setInDarkZone] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
-      // Detect if we're over the dark projects section
-      const projectsEl = document.getElementById("projects");
-      if (projectsEl) {
-        const rect = projectsEl.getBoundingClientRect();
-        setInDarkZone(rect.top < 80 && rect.bottom > 80);
-      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -31,17 +24,18 @@ export default function Nav() {
     ["Projets", "#projects"],
     ["Skills", "#skills"],
     ["Parcours", "#experience"],
+    ["Voyages", "#travels"],
     ["Contact", "#contact"],
   ];
 
   const navBg = menuOpen
     ? "transparent"
     : scrolled
-      ? (inDarkZone ? "rgba(12,12,12,0.92)" : "rgba(250,247,242,0.92)")
+      ? "rgba(250,247,242,0.92)"
       : "transparent";
 
-  const navColor = (inDarkZone && scrolled && !menuOpen) ? "#fff" : COLORS.ink;
-  const linkColor = (inDarkZone && scrolled && !menuOpen) ? "rgba(255,255,255,0.7)" : COLORS.inkSoft;
+  const navColor = COLORS.ink;
+  const linkColor = COLORS.inkSoft;
 
   return (
     <nav style={{
@@ -49,7 +43,7 @@ export default function Nav() {
       padding: scrolled ? "12px 40px" : "20px 40px",
       background: navBg,
       backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
-      borderBottom: scrolled && !menuOpen ? `1px solid ${inDarkZone ? "rgba(255,255,255,0.06)" : COLORS.warmLight}` : "none",
+      borderBottom: scrolled && !menuOpen ? `1px solid ${COLORS.warmLight}` : "none",
       transition: "all 0.4s ease",
       display: "flex", alignItems: "center", justifyContent: "space-between",
     }}>

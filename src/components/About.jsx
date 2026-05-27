@@ -10,22 +10,26 @@ export default function About() {
         <Reveal direction="left">
           <div style={{
             aspectRatio: "1", maxWidth: 380, borderRadius: 24,
-            background: `linear-gradient(135deg, ${COLORS.warmLight}, ${COLORS.cream})`,
-            border: `1px solid ${COLORS.warmLight}`,
-            display: "flex", alignItems: "center", justifyContent: "center",
             position: "relative", overflow: "hidden",
           }}>
-            <span style={{
-              fontFamily: fonts.display, fontSize: 100, fontWeight: 700,
-              fontStyle: "italic", color: COLORS.accent, opacity: 0.15,
-            }}>{"</>"}</span>
-            {[180, 220, 260].map((size, i) => (
-              <div key={i} style={{
-                position: "absolute", width: size, height: size, borderRadius: "50%",
-                border: `1px solid ${COLORS.warm}30`,
-                animation: `spin ${15 + i * 10}s linear infinite ${i % 2 ? "reverse" : ""}`,
-              }} />
-            ))}
+            <img
+              src="/photo.png"
+              alt="Aylan Lounici"
+              style={{
+                width: "100%", height: "100%",
+                objectFit: "cover",
+                objectPosition: "center top",
+                borderRadius: 24,
+                display: "block",
+              }}
+            />
+            {/* Subtle accent border overlay */}
+            <div style={{
+              position: "absolute", inset: 0,
+              borderRadius: 24,
+              boxShadow: `inset 0 0 0 2px ${COLORS.warmLight}`,
+              pointerEvents: "none",
+            }} />
           </div>
         </Reveal>
 
@@ -44,7 +48,7 @@ export default function About() {
             Entre deux lignes de code, je m'entraîne sur des plateformes de CTF, j'explore le pentesting
             et je me forme aux nouvelles menaces et meilleures pratiques de sécurité.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, marginBottom: 24 }}>
             {[["15+", "Projets"], ["3+", "Ans XP"], ["50+", "CTF résolus"]].map(([num, label]) => (
               <div key={label} style={{
                 textAlign: "center", padding: "20px 12px", borderRadius: 16,
@@ -52,6 +56,29 @@ export default function About() {
               }}>
                 <div style={{ fontFamily: fonts.display, fontSize: 28, fontWeight: 700, color: COLORS.accent }}>{num}</div>
                 <div style={{ fontFamily: fonts.body, fontSize: 13, color: COLORS.inkMuted, marginTop: 4 }}>{label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Passions */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {[
+              { icon: "🏃", label: "Sport" },
+              { icon: "🔐", label: "CTF & Hacking" },
+              { icon: "✈️", label: "Voyage" },
+              { icon: "💻", label: "Open Source" },
+              { icon: "🛡️", label: "Cybersécurité" },
+            ].map(({ icon, label }) => (
+              <div key={label} style={{
+                display: "flex", alignItems: "center", gap: 7,
+                padding: "7px 15px", borderRadius: 100,
+                background: COLORS.cream,
+                border: `1px solid ${COLORS.warmLight}`,
+                fontFamily: fonts.body, fontSize: 13,
+                color: COLORS.inkSoft,
+              }}>
+                <span style={{ fontSize: 15 }}>{icon}</span>
+                <span>{label}</span>
               </div>
             ))}
           </div>
