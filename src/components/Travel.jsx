@@ -398,17 +398,17 @@ export default function Travel() {
               ].map(({ flag, city, tag }) => (
                 <div key={city}
                   style={{
-                    display:"flex", alignItems:"center", gap:7,
-                    padding:"7px 14px", borderRadius:100,
+                    display:"flex", alignItems:"center", gap:5,
+                    padding:"5px 10px", borderRadius:100,
                     background:COLORS.bg, border:`1px solid ${COLORS.warmLight}`,
                     transition:"all 0.25s ease", cursor:"default",
                   }}
                   onMouseEnter={e=>{ e.currentTarget.style.background=`${COLORS.accent}12`; e.currentTarget.style.borderColor=`${COLORS.accent}50`; }}
                   onMouseLeave={e=>{ e.currentTarget.style.background=COLORS.bg; e.currentTarget.style.borderColor=COLORS.warmLight; }}
                 >
-                  <span style={{fontSize:15}}>{flag}</span>
-                  <span style={{fontFamily:fonts.body, fontSize:12, fontWeight:600, color:COLORS.ink}}>{city}</span>
-                  <span style={{fontFamily:fonts.mono, fontSize:9, color:COLORS.accent, letterSpacing:1, textTransform:"uppercase"}}>{tag}</span>
+                  <span style={{fontSize:13}}>{flag}</span>
+                  <span style={{fontFamily:fonts.body, fontSize:11, fontWeight:600, color:COLORS.ink}}>{city}</span>
+                  <span style={{fontFamily:fonts.mono, fontSize:8, color:COLORS.accent, letterSpacing:1, textTransform:"uppercase"}}>{tag}</span>
                 </div>
               ))}
             </div>

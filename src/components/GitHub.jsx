@@ -94,7 +94,7 @@ export default function GitHub() {
             alignItems: "center",
             justifyContent: "center",
           }}>
-            <div style={{
+            <div className="github-orbital" style={{
               position: "relative",
               width: 360,
               height: 360,
@@ -378,6 +378,7 @@ export default function GitHub() {
         }
         @media(max-width: 768px) {
           .github-grid { grid-template-columns: 1fr !important; }
+          .github-grid > div:first-child { display: none !important; }
         }
       `}</style>
     </section>

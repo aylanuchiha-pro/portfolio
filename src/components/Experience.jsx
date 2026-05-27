@@ -98,7 +98,7 @@ export default function Experience() {
         <div className="exp-timeline" style={{ position: "relative" }}>
 
           {/* Vertical center line */}
-          <div style={{
+          <div className="exp-line" style={{
             position: "absolute",
             left: "50%", top: 18, bottom: 18,
             width: 2,
@@ -118,6 +118,7 @@ export default function Experience() {
             return (
               <div
                 key={i}
+                className="exp-row"
                 style={{
                   display: "flex",
                   justifyContent: isLeft ? "flex-start" : "flex-end",
@@ -141,7 +142,7 @@ export default function Experience() {
                   }}>
 
                     {/* Arrow tip pointing toward center */}
-                    <div style={{
+                    <div className="exp-arrow" style={{
                       position: "absolute",
                       top: 22,
                       [isLeft ? "right" : "left"]: -8,
@@ -163,7 +164,7 @@ export default function Experience() {
                     }} />
 
                     {/* Badges */}
-                    <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap", alignItems: "center" }}>
                       <span style={{
                         fontFamily: fonts.mono, fontSize: 10,
                         color: item.color,
@@ -184,6 +185,15 @@ export default function Experience() {
                           letterSpacing: 2, textTransform: "uppercase",
                         }}>● Actuel</span>
                       )}
+                      {/* Date visible dans la carte (affiché seulement sur mobile) */}
+                      <span className="exp-date-mobile" style={{
+                        fontFamily: fonts.mono, fontSize: 10,
+                        color: COLORS.inkMuted,
+                        background: COLORS.bgDark,
+                        border: `1px solid ${COLORS.warmLight}`,
+                        borderRadius: 100, padding: "3px 10px",
+                        display: "none",
+                      }}>{item.date}</span>
                     </div>
 
                     <h3 style={{
@@ -202,7 +212,7 @@ export default function Experience() {
                 </Reveal>
 
                 {/* ── Center dot + date ── */}
-                <div style={{
+                <div className="exp-dot" style={{
                   position: "absolute",
                   left: "50%", top: 20,
                   transform: "translateX(-50%)",
@@ -237,16 +247,22 @@ export default function Experience() {
 
       <style>{`
         @media (max-width: 768px) {
-          .exp-timeline > div {
-            justify-content: flex-end !important;
-          }
-          .exp-timeline > div > div:first-child {
-            width: 80% !important;
-          }
-          .exp-timeline > div > div:last-child {
-            left: 10% !important;
+          .exp-line {
+            left: 20px !important;
             transform: none !important;
           }
+          .exp-row {
+            justify-content: flex-end !important;
+            padding-left: 44px !important;
+          }
+          .exp-row > div:first-child {
+            width: 100% !important;
+          }
+          .exp-dot {
+            left: 12px !important;
+            transform: none !important;
+          }
+          .exp-arrow { display: none !important; }
         }
       `}</style>
     </section>

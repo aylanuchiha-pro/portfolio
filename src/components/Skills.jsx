@@ -79,7 +79,7 @@ function SkillCard({ cat, index }) {
     <div ref={ref} onMouseMove={handleMouse} onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
       style={{ perspective: 1200 }}>
       <div style={{
-        background: COLORS.cream, borderRadius: 24, padding: "36px 32px",
+        background: COLORS.cream, borderRadius: 24, padding: "clamp(16px, 3vw, 36px) clamp(14px, 2.5vw, 32px)",
         border: `1px solid ${COLORS.warmLight}`,
         opacity: eased,
         transform: `

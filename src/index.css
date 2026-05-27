@@ -69,3 +69,50 @@ img {
   .nav-desktop { display: none !important; }
   .nav-mobile-btn { display: flex !important; }
 }
+
+/* ── Mobile global ─────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Hero — cacher les mots décoratifs en arrière-plan */
+  #hero > span { display: none !important; }
+
+  /* Réduire les paddings verticaux de toutes les sections */
+  #about      { padding: 64px 20px 48px !important; }
+  #projects   { padding: 64px 0 48px !important; }
+  #skills     { padding: 64px 20px !important; max-width: 100% !important; }
+  #github     { padding: 64px 20px !important; }
+  #experience { padding: 64px 16px !important; }
+  #contact    { padding: 64px 20px !important; }
+
+  /* Projects — inner wrapper padding */
+  #projects > div { padding: 0 16px !important; }
+
+  /* About — photo centrée et max-width réduit */
+  .about-grid { gap: 28px !important; }
+  .about-grid > div:first-child > div { max-width: 220px !important; margin: 0 auto !important; }
+
+  /* Skills — 2 colonnes sur mobile, cartes compactes */
+  .skills-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+
+  /* Experience — colonne unique propre */
+  .exp-line  { left: 20px !important; transform: none !important; }
+  .exp-row   { justify-content: flex-end !important; padding-left: 40px !important; }
+  .exp-row > div:first-child { width: 100% !important; }
+  .exp-dot   { display: none !important; }
+  .exp-arrow { display: none !important; }
+  .exp-date-mobile { display: inline-block !important; }
+
+  /* GitHub — masquer l'animation orbitale */
+  .github-grid > div:first-child { display: none !important; }
+
+  /* Travel — map lisible sur mobile */
+  #travels { padding: 16px 0 !important; overflow: hidden !important; }
+  .travel-wall { gap: 0 !important; padding: 0 !important; }
+
+  /* Contact — inputs pleine largeur */
+  #contact input, #contact textarea { width: 100% !important; }
+  #contact button { width: 100% !important; }
+
+  /* Réduire la taille des SectionTitle sur mobile */
+  h2 { font-size: clamp(24px, 6vw, 40px) !important; }
+}
