@@ -16,12 +16,7 @@ function BrowserMockup({ project, active }) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   const handleIframeLoad = () => {
-    try {
-      const doc = iframeRef.current?.contentDocument;
-      if (doc?.body?.innerHTML) setIframeLoaded(true);
-    } catch {
-      // Blocked by X-Frame-Options — CSS fallback stays
-    }
+    setIframeLoaded(true);
   };
 
   return (
