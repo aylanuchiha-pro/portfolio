@@ -11,6 +11,7 @@ const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 const VISITED_ISO = new Set([
   "250","442","356","056","276","724","380","826",
   "528","756","620","300","792","504","784","764","392",
+  "124","458","360","012",
 ]);
 const COUNTRY_NAMES = {
   "250":"France 🇫🇷","442":"Luxembourg 🇱🇺","356":"Inde 🇮🇳",
@@ -19,10 +20,11 @@ const COUNTRY_NAMES = {
   "756":"Suisse 🇨🇭","620":"Portugal 🇵🇹","300":"Grèce 🇬🇷",
   "792":"Turquie 🇹🇷","504":"Maroc 🇲🇦","784":"Émirats 🇦🇪",
   "764":"Thaïlande 🇹🇭","392":"Japon 🇯🇵",
+  "124":"Canada 🇨🇦","458":"Malaisie 🇲🇾","360":"Indonésie 🇮🇩","012":"Algérie 🇩🇿",
 };
 
 const stats = [
-  { value:"17+", label:"Pays visités"        },
+  { value:"21+", label:"Pays visités"        },
   { value:"4",   label:"Continents"          },
   { value:"3",   label:"Stages à l'étranger" },
   { value:"∞",   label:"Envie d'explorer"    },
@@ -39,40 +41,41 @@ const stats = [
 // ──────────────────────────────────────────────────────────────────────────────
 const leftPhotos = [
   {
-    src:"/travels/1.jpg", country:"Inde",    color:COLORS.accent,
+    src:"/travels/1.jpg", country:"Canada",  color:COLORS.accent,
     rotate:-11, pin:"#E8572A", fix:"pin",
     aspect:"portrait",  size:"large",
     colW:"86%", colAlign:"flex-end",   colMt:"6%",  colZ:3,
   },
   {
-    src:"/travels/3.jpg", country:"Maroc",   color:COLORS.warm,
+    src:"/travels/3.jpg", country:"Émirats", color:COLORS.warm,
     rotate: 5,  pin:"#4A7FD4", fix:"tape", tapeRot:2,
     aspect:"square",   size:"small",
     colW:"50%", colAlign:"flex-start", colMt:"-13%", colZ:4,
   },
   {
-    src:"/travels/5.jpg", country:"Espagne", color:COLORS.sage,
+    src:"/travels/5.jpg", country:"Bali",    color:COLORS.sage,
     rotate:-7,  pin:"#8A6FD4", fix:"pin",
     aspect:"landscape", size:"medium",
     colW:"80%", colAlign:"center",    colMt:"4%",  colZ:2,
+    objectPos:"center 70%",
   },
 ];
 
 const rightPhotos = [
   {
-    src:"/travels/2.jpg", country:"Japon",      color:"#4A7FD4",
+    src:"/travels/2.jpg", country:"Émirats",   color:"#4A7FD4",
     rotate:12,  pin:"#C4956A", fix:"tape", tapeRot:-4,
     aspect:"landscape", size:"large",
     colW:"90%", colAlign:"flex-start", colMt:"4%",   colZ:3,
   },
   {
-    src:"/travels/4.jpg", country:"Thaïlande",  color:"#8A6FD4",
+    src:"/travels/4.jpg", country:"Malaisie",  color:"#8A6FD4",
     rotate:-8,  pin:"#7A9E7E", fix:"tack",
     aspect:"square",   size:"small",
     colW:"48%", colAlign:"flex-end",   colMt:"-11%", colZ:4,
   },
   {
-    src:"/travels/6.jpg", country:"Luxembourg", color:COLORS.sage,
+    src:"/travels/6.jpg", country:"Algérie",   color:COLORS.sage,
     rotate:14,  pin:"#E8572A", fix:"pin",
     aspect:"portrait",  size:"medium",
     colW:"74%", colAlign:"center",    colMt:"7%",   colZ:2,
@@ -178,6 +181,7 @@ function PinnedPhoto({ photo }) {
             onLoad={() => setLoaded(true)}
             style={{
               width:"100%", height:"100%", objectFit:"cover", display:"block",
+              objectPosition: photo.objectPos ?? "center center",
               opacity: loaded?1:0, transition:"opacity 0.5s,transform 0.5s",
               transform: hov?"scale(1.08)":"scale(1)",
               filter:"saturate(1.06) contrast(1.02)",
