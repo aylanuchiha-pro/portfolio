@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import GitHub from "./components/GitHub";
 import Experience from "./components/Experience";
 import Travel from "./components/Travel";
+import Cyber from "./components/Cyber";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { COLORS } from "./theme";
@@ -21,6 +22,7 @@ export default function App() {
       <GitHub />
       <Experience />
       <Travel />
+      <Cyber />
       <Contact />
       <Footer />
     </div>

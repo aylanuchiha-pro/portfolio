@@ -25,6 +25,7 @@ export default function Nav() {
     ["Skills", "#skills"],
     ["Parcours", "#experience"],
     ["Voyages", "#travels"],
+    ["Cyber", "#cyber"],
     ["Contact", "#contact"],
   ];
 
