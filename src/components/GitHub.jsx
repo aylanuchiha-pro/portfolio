@@ -32,6 +32,15 @@ export default function GitHub() {
   const [displayed, setDisplayed] = useState("");
   const [charIdx, setCharIdx] = useState(0);
   const [prevLines, setPrevLines] = useState([]);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 768
+  );
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Typing animation
   useEffect(() => {
@@ -82,13 +91,13 @@ export default function GitHub() {
         maxWidth: 1100,
         margin: "0 auto",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
         gap: "clamp(40px, 6vw, 100px)",
         alignItems: "center",
       }} className="github-grid">
 
-        {/* ── Left: animated logo ── */}
-        <Reveal direction="left">
+        {/* ── Left: animated logo (desktop only) ── */}
+        {!isMobile && <Reveal direction="left">
           <div style={{
             display: "flex",
             alignItems: "center",
@@ -198,11 +207,11 @@ export default function GitHub() {
               </a>
             </div>
           </div>
-        </Reveal>
+        </Reveal>}
 
         {/* ── Right: content ── */}
-        <Reveal direction="right">
-          <div>
+        <Reveal direction={isMobile ? "up" : "right"} style={{ minWidth: 0, overflow: "hidden" }}>
+          <div style={{ minWidth: 0 }}>
             <span style={{
               fontFamily: fonts.mono,
               fontSize: 11,
@@ -212,7 +221,7 @@ export default function GitHub() {
               display: "block",
               marginBottom: 10,
             }}>
-              open source
+              06 — open source
             </span>
 
             <h2 style={{
@@ -237,7 +246,7 @@ export default function GitHub() {
             </p>
 
             {/* Stats */}
-            <div style={{ display: "flex", gap: 16, marginBottom: 32 }}>
+            <div className="github-stats" style={{ display: "flex", gap: 16, marginBottom: 32 }}>
               {STATS.map(({ value, label }) => (
                 <div key={label} style={{
                   flex: 1,
@@ -274,6 +283,8 @@ export default function GitHub() {
               padding: "18px 22px",
               marginBottom: 32,
               overflow: "hidden",
+              width: "100%",
+              boxSizing: "border-box",
             }}>
               {/* Window bar */}
               <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 14 }}>
@@ -299,6 +310,7 @@ export default function GitHub() {
                   overflow: "hidden",
                   whiteSpace: "nowrap",
                   textOverflow: "ellipsis",
+                  maxWidth: "100%",
                 }}>
                   {line}
                 </div>
@@ -312,16 +324,26 @@ export default function GitHub() {
                 display: "flex",
                 alignItems: "center",
               }}>
-                <span style={{ color: COLORS.sage, marginRight: 6 }}>▶</span>
-                {displayed}
+                <span style={{ color: COLORS.sage, marginRight: 6, flexShrink: 0 }}>▶</span>
                 <span style={{
-                  display: "inline-block",
-                  width: 7, height: 14,
-                  background: COLORS.accent,
-                  marginLeft: 2,
-                  animation: "blink 1s step-end infinite",
-                  borderRadius: 1,
-                }} />
+                  flex: 1,
+                  minWidth: 0,
+                  overflow: "hidden",
+                  whiteSpace: "nowrap",
+                  display: "flex",
+                  alignItems: "center",
+                }}>
+                  {displayed}
+                  <span style={{
+                    display: "inline-block",
+                    width: 7, height: 14,
+                    background: COLORS.accent,
+                    marginLeft: 2,
+                    animation: "blink 1s step-end infinite",
+                    borderRadius: 1,
+                    flexShrink: 0,
+                  }} />
+                </span>
               </div>
             </div>
 
@@ -330,9 +352,11 @@ export default function GitHub() {
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="github-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 12,
                 fontFamily: fonts.body,
                 fontWeight: 600,
@@ -377,8 +401,9 @@ export default function GitHub() {
           50%       { transform: translateY(-10px); }
         }
         @media(max-width: 768px) {
-          .github-grid { grid-template-columns: 1fr !important; }
-          .github-grid > div:first-child { display: none !important; }
+          .github-cta { width: 100% !important; box-sizing: border-box !important; }
+          .github-stats { gap: 8px !important; }
+          .github-stats > div { padding: 12px 8px !important; }
         }
       `}</style>
     </section>

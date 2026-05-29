@@ -48,7 +48,7 @@ export default function About() {
             Entre deux lignes de code, je m'entraîne sur des plateformes de CTF, j'explore le pentesting
             et je me forme aux nouvelles menaces et meilleures pratiques de sécurité.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, marginBottom: 24 }}>
+          <div className="about-stats" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, marginBottom: 24 }}>
             {[["15+", "Projets"], ["3+", "Ans XP"], ["50+", "CTF résolus"]].map(([num, label]) => (
               <div key={label} style={{
                 textAlign: "center", padding: "20px 12px", borderRadius: 16,

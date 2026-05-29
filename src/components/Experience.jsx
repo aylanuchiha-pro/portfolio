@@ -59,9 +59,10 @@ export default function Experience() {
     <section id="experience" style={{ padding: "120px 40px", background: COLORS.cream }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
 
-        <SectionTitle number="04" label="parcours" title="Expériences & Formation" />
+        <SectionTitle number="03" label="parcours" title="Expériences & Formation" />
 
         {/* LinkedIn CTA */}
+        <div className="exp-linkedin-wrap">
         <Reveal direction="up" style={{ textAlign: "center", marginBottom: 72, marginTop: -28 }}>
           <a
             href="https://www.linkedin.com/in/aylan-lounici"
@@ -93,6 +94,7 @@ export default function Experience() {
             Voir mon profil LinkedIn
           </a>
         </Reveal>
+        </div>
 
         {/* ── Zigzag Timeline ─────────────────────────────────── */}
         <div className="exp-timeline" style={{ position: "relative" }}>
@@ -132,7 +134,7 @@ export default function Experience() {
                   delay={i * 0.08}
                   style={{ width: "44%" }}
                 >
-                  <div style={{
+                  <div className="exp-card" style={{
                     background: COLORS.bg,
                     borderRadius: 20,
                     padding: "22px 26px",
@@ -204,7 +206,7 @@ export default function Experience() {
                       fontFamily: fonts.body, fontSize: 13, fontWeight: 600,
                       color: item.color, marginBottom: 8,
                     }}>{item.org}</p>
-                    <p style={{
+                    <p className="exp-card-desc" style={{
                       fontFamily: fonts.body, fontSize: 14,
                       color: COLORS.inkSoft, lineHeight: 1.7, margin: 0,
                     }}>{item.desc}</p>
@@ -247,22 +249,24 @@ export default function Experience() {
 
       <style>{`
         @media (max-width: 768px) {
-          .exp-line {
-            left: 20px !important;
-            transform: none !important;
-          }
-          .exp-row {
-            justify-content: flex-end !important;
-            padding-left: 44px !important;
-          }
-          .exp-row > div:first-child {
-            width: 100% !important;
-          }
-          .exp-dot {
-            left: 12px !important;
-            transform: none !important;
-          }
+          /* Timeline layout */
+          .exp-line  { left: 16px !important; transform: none !important; }
+          .exp-row   { justify-content: flex-end !important; padding-left: 36px !important; margin-bottom: 20px !important; }
+          .exp-row:last-child { margin-bottom: 0 !important; }
+          .exp-row > div:first-child { width: 100% !important; }
+          .exp-dot   { left: 8px !important; transform: none !important; }
           .exp-arrow { display: none !important; }
+
+          /* Cartes compactes */
+          .exp-card { padding: 14px 16px !important; border-radius: 14px !important; }
+          .exp-card h3 { font-size: 15px !important; margin-bottom: 2px !important; }
+          .exp-card-desc { font-size: 13px !important; line-height: 1.55 !important; }
+
+          /* LinkedIn CTA */
+          .exp-linkedin-wrap > div { margin-bottom: 36px !important; margin-top: -10px !important; }
+
+          /* Section padding */
+          #experience { padding: 56px 16px !important; }
         }
       `}</style>
     </section>

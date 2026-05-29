@@ -5,7 +5,7 @@ import { COLORS, fonts } from "../theme";
 export default function Contact() {
   return (
     <section id="contact" style={{ padding: "100px 40px", maxWidth: 650, margin: "0 auto", textAlign: "center" }}>
-      <SectionTitle number="07" label="contact" title="Parlons ensemble" />
+      <SectionTitle number="08" label="contact" title="Parlons ensemble" />
       <Reveal>
         <p style={{ fontFamily: fonts.body, fontSize: 17, color: COLORS.inkSoft, lineHeight: 1.8, marginBottom: 40 }}>
           Un projet web en tête ? Besoin d'un audit de sécurité ?<br />

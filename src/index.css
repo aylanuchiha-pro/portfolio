@@ -75,13 +75,16 @@ img {
 
   /* Hero — cacher les mots décoratifs en arrière-plan */
   #hero > span { display: none !important; }
+  #hero { padding: 0 16px !important; }
 
   /* Réduire les paddings verticaux de toutes les sections */
   #about      { padding: 64px 20px 48px !important; }
   #projects   { padding: 64px 0 48px !important; }
-  #skills     { padding: 64px 20px !important; max-width: 100% !important; }
+  #skills     { padding: 64px 16px !important; max-width: 100% !important; }
   #github     { padding: 64px 20px !important; }
   #experience { padding: 64px 16px !important; }
+  #travels    { padding: 16px 0 !important; }
+  #cyber      { padding: 64px 20px !important; }
   #contact    { padding: 64px 20px !important; }
 
   /* Projects — inner wrapper padding */
@@ -89,10 +92,13 @@ img {
 
   /* About — photo centrée et max-width réduit */
   .about-grid { gap: 28px !important; }
-  .about-grid > div:first-child > div { max-width: 220px !important; margin: 0 auto !important; }
+  .about-grid > div:first-child > div { max-width: 240px !important; margin: 0 auto !important; }
+  /* Stats about: compact sur mobile */
+  .about-stats { gap: 10px !important; }
+  .about-stats > div { padding: 14px 8px !important; }
 
   /* Skills — 2 colonnes sur mobile, cartes compactes */
-  .skills-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .skills-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
 
   /* Experience — colonne unique propre */
   .exp-line  { left: 20px !important; transform: none !important; }
@@ -102,17 +108,30 @@ img {
   .exp-arrow { display: none !important; }
   .exp-date-mobile { display: inline-block !important; }
 
-  /* GitHub — masquer l'animation orbitale */
-  .github-grid > div:first-child { display: none !important; }
+  /* GitHub — géré via React state (isMobile) */
 
   /* Travel — map lisible sur mobile */
-  #travels { padding: 16px 0 !important; overflow: hidden !important; }
   .travel-wall { gap: 0 !important; padding: 0 !important; }
+  .travel-wall > div:first-child,
+  .travel-wall > div:last-child { display: none !important; }
 
   /* Contact — inputs pleine largeur */
-  #contact input, #contact textarea { width: 100% !important; }
-  #contact button { width: 100% !important; }
+  #contact input, #contact textarea { width: 100% !important; box-sizing: border-box !important; }
+  #contact button { width: 100% !important; align-self: stretch !important; }
 
   /* Réduire la taille des SectionTitle sur mobile */
-  h2 { font-size: clamp(24px, 6vw, 40px) !important; }
+  h2 { font-size: clamp(22px, 6vw, 40px) !important; }
+
+  /* Nav — réduire le padding horizontal */
+  nav { padding-left: 20px !important; padding-right: 20px !important; }
+
+  /* Empêcher le scroll horizontal global */
+  section { overflow-x: hidden !important; }
+}
+
+/* ── Très petits écrans (< 380px) ─────────────────────────────────────── */
+@media (max-width: 380px) {
+  #skills { padding: 64px 12px !important; }
+  .skills-grid { gap: 8px !important; }
+  .github-stats > div { padding: 10px 6px !important; }
 }

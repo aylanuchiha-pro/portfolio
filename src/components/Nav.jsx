@@ -20,13 +20,13 @@ export default function Nav() {
   }, [menuOpen]);
 
   const links = [
-    ["À propos", "#about"],
-    ["Projets", "#projects"],
-    ["Skills", "#skills"],
-    ["Parcours", "#experience"],
-    ["Voyages", "#travels"],
-    ["Cyber", "#cyber"],
-    ["Contact", "#contact"],
+    ["À propos",  "#about"],
+    ["Projets",   "#projects"],
+    ["Parcours",  "#experience"],
+    ["Skills",    "#skills"],
+    ["Cyber",     "#cyber"],
+    ["Voyages",   "#travels"],
+    ["Contact",   "#contact"],
   ];
 
   const navBg = menuOpen

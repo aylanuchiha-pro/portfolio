@@ -3,11 +3,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import { COLORS, fonts } from "../theme";
 
 const projects = [
-  { name: "TixyCars",          desc: "Site automobile avec design immersif et animations fluides.",                   tech: ["HTML","CSS","JavaScript"],    url: "https://tixycars.fr",                             color: "#E8572A" },
-  { name: "Portfolio Créatif", desc: "Portfolio personnel avec effets visuels et transitions avancées.",            tech: ["HTML","CSS","JS"],             url: "https://moonlit-brioche-a46b5e.netlify.app",      color: "#7A9E7E" },
+  { name: "TixyCarsPlay",      desc: "Vente et installation de CarPlay à domicile — site vitrine avec design moderne.", tech: ["HTML","CSS","JS"],             url: "https://moonlit-brioche-a46b5e.netlify.app",      color: "#7A9E7E" },
   { name: "Vacance",           desc: "Site thématique voyage avec galerie photo et interface élégante.",            tech: ["HTML","CSS","GitHub Pages"],   url: "https://aylanuchiha-pro.github.io/vacance",       color: "#4A7FD4" },
   { name: "Che",               desc: "Projet web créatif avec mise en page originale et animations.",              tech: ["HTML","CSS","GitHub Pages"],   url: "https://aylanuchiha-pro.github.io/che",           color: "#C4956A" },
-  { name: "Eel",               desc: "Application web moderne déployée sur Vercel avec interface soignée.",       tech: ["React","Vercel","CSS"],        url: "https://eel-dusky.vercel.app",                    color: "#8A6FD4" },
+  { name: "Eel",               desc: "Application web moderne déployée sur Vercel avec interface soignée.",        tech: ["React","Vercel","CSS"],        url: "https://eel-dusky.vercel.app",                    color: "#8A6FD4" },
+  { name: "TixyCars",          desc: "Site automobile avec design immersif et animations fluides.",                 tech: ["HTML","CSS","JavaScript"],    url: "https://tixycars.fr",                             color: "#E8572A" },
 ];
 
 // ─── Browser mockup with iframe preview ──────────────────────────────────────

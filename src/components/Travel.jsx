@@ -4,6 +4,7 @@ import {
 } from "react-simple-maps";
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
+import PlanesBackground from "./PlanesBackground";
 import { COLORS, fonts } from "../theme";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -27,7 +28,6 @@ const stats = [
   { value:"21+", label:"Pays visités"        },
   { value:"4",   label:"Continents"          },
   { value:"3",   label:"Stages à l'étranger" },
-  { value:"∞",   label:"Envie d'explorer"    },
 ];
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -83,7 +83,7 @@ const rightPhotos = [
 ];
 
 // ── Polaroïd spacing par taille ───────────────────────────────────────────────
-const pBottom = { large:32, medium:26, small:18 };
+const pBottom = { large:14, medium:11, small:7 };
 const pPad    = { large: 8, medium: 7, small: 4 };
 const pCapt   = { large:14, medium:12, small:10 };
 const aspectR = { portrait:"3/4", landscape:"4/3", square:"1/1" };
@@ -199,13 +199,6 @@ function PinnedPhoto({ photo }) {
             pointerEvents:"none",
           }}/>
         </div>
-        <div style={{
-          textAlign:"center", paddingTop:pPad[photo.size]+2,
-          fontFamily:"'Caveat',cursive,sans-serif",
-          fontSize:pCapt[photo.size], color:"#5a5a5a",
-        }}>
-          📍 {photo.country}
-        </div>
       </div>
 
       {/* Ombre sol */}
@@ -260,6 +253,9 @@ export default function Travel() {
         width: "100%",
       }}
     >
+      {/* ── Avions 3D ── */}
+      <PlanesBackground />
+
       {/* ── Fondu haut ── */}
       <div style={{
         position:"absolute", top:0, left:0, right:0,
@@ -312,14 +308,20 @@ export default function Travel() {
               ))}
             </div>
 
-            <SectionTitle number="05" label="voyages" title="Le Monde & Moi" />
-            <p style={{
-              fontFamily:fonts.display, fontSize:"clamp(13px,1.4vw,15px)",
-              fontStyle:"italic", color:COLORS.inkMuted,
-              maxWidth:400, margin:"-6px auto 16px", lineHeight:1.7,
-            }}>
-              "Le monde est un livre, et ceux qui ne voyagent pas n'en lisent qu'une page."
-            </p>
+            <div className="travel-title-zone" style={{ position:"relative" }}>
+              {/* Petite photo épinglée haut-droite — mobile uniquement */}
+              <div className="travel-pin-top-right">
+                <PinnedPhoto photo={rightPhotos[1]} />
+              </div>
+              <SectionTitle number="07" label="voyages" title="Le Monde & Moi" />
+              <p style={{
+                fontFamily:fonts.display, fontSize:"clamp(13px,1.4vw,15px)",
+                fontStyle:"italic", color:COLORS.inkMuted,
+                maxWidth:400, margin:"-6px auto 16px", lineHeight:1.7,
+              }}>
+                "Le monde est un livre, et ceux qui ne voyagent pas n'en lisent qu'une page."
+              </p>
+            </div>
 
             <div style={{ position:"relative" }}>
               {/* Tooltip */}
@@ -384,23 +386,24 @@ export default function Travel() {
             </div>
 
             {/* Chips */}
-            <div style={{
+            <div className="travel-chips-row" style={{
               marginTop:20,
               display:"flex", flexWrap:"wrap", gap:8, justifyContent:"center",
             }}>
               {[
-                {flag:"🇫🇷",city:"Paris",     tag:"Home"          },
-                {flag:"🇱🇺",city:"Luxembourg",tag:"Stage"         },
-                {flag:"🇮🇳",city:"Inde",      tag:"Stage"         },
-                {flag:"🇯🇵",city:"Tokyo",     tag:"Coup de cœur" },
-                {flag:"🇲🇦",city:"Marrakech", tag:"Culture"       },
-                {flag:"🇪🇸",city:"Barcelone", tag:"Incontournable"},
-                {flag:"🇮🇹",city:"Rome",      tag:"Histoire"      },
-                {flag:"🇹🇭",city:"Bangkok",   tag:"Aventure"      },
-                {flag:"🇬🇷",city:"Athènes",   tag:"Îles"          },
-                {flag:"🇵🇹",city:"Lisbonne",  tag:"Escapade"      },
-              ].map(({ flag, city, tag }) => (
+                {flag:"🇫🇷",city:"Paris",      tag:"Home"          },
+                {flag:"🇱🇺",city:"Luxembourg", tag:"Stage"         },
+                {flag:"🇮🇳",city:"Inde",       tag:"Stage"         },
+                {flag:"🇯🇵",city:"Tokyo",      tag:"Coup de cœur" },
+                {flag:"🇲🇦",city:"Marrakech",  tag:"Culture"       },
+                {flag:"🇪🇸",city:"Barcelone",  tag:"Incontournable"},
+                {flag:"🇮🇹",city:"Rome",       tag:"Histoire",  extra:true},
+                {flag:"🇹🇭",city:"Bangkok",    tag:"Aventure",  extra:true},
+                {flag:"🇬🇷",city:"Athènes",    tag:"Îles",      extra:true},
+                {flag:"🇵🇹",city:"Lisbonne",   tag:"Escapade",  extra:true},
+              ].map(({ flag, city, tag, extra }) => (
                 <div key={city}
+                  className={extra ? "travel-chip travel-chip-extra" : "travel-chip"}
                   style={{
                     display:"flex", alignItems:"center", gap:5,
                     padding:"5px 10px", borderRadius:100,
@@ -416,6 +419,7 @@ export default function Travel() {
                 </div>
               ))}
             </div>
+
           </div>
 
           {/* ── Colonne droite ── */}
@@ -423,16 +427,58 @@ export default function Travel() {
         </div>
       </Reveal>
 
+      {/* Photo flottante épinglée bas-gauche — mobile uniquement */}
+      <div className="travel-float-photo">
+        <PinnedPhoto photo={leftPhotos[0]} />
+      </div>
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
+
+        /* Photos mobiles cachées sur desktop */
+        .travel-float-photo,
+        .travel-pin-top-right { display: none; }
+
         @media (max-width: 960px) {
+          /* Grille mobile : colonne centrale uniquement */
           .travel-wall {
             grid-template-columns: 1fr !important;
+            padding: 0 16px !important;
           }
           .travel-wall > div:first-child,
           .travel-wall > div:last-child {
             display: none !important;
           }
+
+          /* Chips : cacher les 4 derniers, compacter */
+          .travel-chip-extra { display: none !important; }
+          .travel-chip { padding: 4px 8px !important; gap: 4px !important; }
+          .travel-chips-row { gap: 6px !important; margin-top: 14px !important; }
+
+          /* Photo flottante épinglée bas-gauche */
+          .travel-float-photo {
+            display: block;
+            position: absolute;
+            bottom: -52px;
+            left: 14px;
+            width: 86px;
+            z-index: 20;
+            pointer-events: none;
+          }
+
+          /* Petite photo épinglée haut-droite */
+          .travel-pin-top-right {
+            display: block;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 72px;
+            z-index: 5;
+            pointer-events: none;
+          }
+
+          /* Laisser déborder la section pour la photo flottante */
+          #travels { overflow: visible !important; padding-bottom: 40px !important; }
         }
       `}</style>
     </section>

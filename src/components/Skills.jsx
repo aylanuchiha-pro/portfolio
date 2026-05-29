@@ -100,17 +100,18 @@ function SkillCard({ cat, index }) {
         }} />
 
         {/* Header */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
-          <div style={{
+        <div className="skill-header" style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
+          <div className="skill-icon" style={{
             width: 44, height: 44, borderRadius: 14,
             background: `${cat.color}12`, border: `1px solid ${cat.color}25`,
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 20, color: cat.color,
+            fontSize: 20, color: cat.color, flexShrink: 0,
           }}>{cat.icon}</div>
-          <div>
-            <h3 style={{
+          <div style={{ minWidth: 0 }}>
+            <h3 className="skill-title" style={{
               fontFamily: fonts.display, fontSize: 22, fontWeight: 600,
               color: COLORS.ink, margin: 0, fontStyle: "italic",
+              overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
             }}>{cat.name}</h3>
             <span style={{ fontFamily: fonts.mono, fontSize: 11, color: COLORS.inkMuted }}>
               {cat.items.length} compétences
@@ -119,7 +120,7 @@ function SkillCard({ cat, index }) {
         </div>
 
         {/* Skill bars */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div className="skill-bars" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {cat.items.map((skill, si) => {
             const barProgress = Math.max(0, Math.min(1, (eased - 0.3) * 1.8));
             const stagger = si * 0.05;
@@ -162,8 +163,8 @@ function SkillCard({ cat, index }) {
 
 export default function Skills() {
   return (
-    <section id="skills" style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}>
-      <SectionTitle number="03" label="compétences" title="Skills" />
+    <section id="skills" style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto", overflowX: "hidden" }}>
+      <SectionTitle number="04" label="compétences" title="Skills" />
       <div
         className="skills-grid"
         style={{
@@ -178,7 +179,15 @@ export default function Skills() {
       </div>
       <style>{`
         @media(max-width: 768px) {
-          .skills-grid { grid-template-columns: 1fr !important; }
+          .skills-grid { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+          .skill-header { gap: 8px !important; margin-bottom: 14px !important; }
+          .skill-icon { width: 32px !important; height: 32px !important; border-radius: 10px !important; font-size: 14px !important; }
+          .skill-title { font-size: 13px !important; }
+          .skill-bars { gap: 8px !important; }
+        }
+        @media(max-width: 400px) {
+          .skill-title { font-size: 12px !important; }
+          .skill-icon { width: 28px !important; height: 28px !important; }
         }
       `}</style>
     </section>

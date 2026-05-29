@@ -18,11 +18,11 @@ export default function App() {
       <Hero />
       <About />
       <Projects />
-      <Skills />
-      <GitHub />
       <Experience />
-      <Travel />
+      <Skills />
       <Cyber />
+      <GitHub />
+      <Travel />
       <Contact />
       <Footer />
     </div>

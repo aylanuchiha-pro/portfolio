@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
+import CyberBackground from "./CyberBackground";
 import { COLORS, fonts } from "../theme";
 
 /* ─── données ─────────────────────────────────────────────────────────── */
@@ -187,14 +188,17 @@ export default function Cyber() {
   return (
     <section id="cyber" style={{ background:COLORS.bg, padding:"100px 40px 100px", position:"relative", overflow:"hidden" }}>
 
+      {/* ── Matrix code background ── */}
+      <CyberBackground />
+
       {/* ambiance warm subtile */}
       <div style={{ position:"absolute", top:"-8%", right:"-4%", width:"42%", height:"65%", background:`radial-gradient(ellipse at top right, ${COLORS.warmLight}50, transparent 65%)`, pointerEvents:"none" }} />
       <div style={{ position:"absolute", bottom:"-4%", left:"4%", width:"28%", height:"38%", background:`radial-gradient(ellipse at bottom left, ${COLORS.bgDark}70, transparent 65%)`, pointerEvents:"none" }} />
 
-      <div style={{ maxWidth:1100, margin:"0 auto", position:"relative" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto", position:"relative", zIndex:1 }}>
 
         {/* titre de section */}
-        <SectionTitle number="06" label="cybersécurité" title="Cybersécurité" />
+        <SectionTitle number="05" label="cybersécurité" title="Cybersécurité" />
 
         {/* accroche */}
         <Reveal>
@@ -297,7 +301,7 @@ export default function Cyber() {
         </div>
 
         {/* ── photos CHE pleine largeur ── */}
-        <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:14, height:230 }}>
+        <div className="cyber-photos" style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:14, height:230 }}>
           <CHEPhoto src="/cyber/drapeau.jpeg"    alt="Drapeau Cryptanga" rotate={-1.5} delay={0} />
           <CHEPhoto src="/cyber/tente.jpeg"      alt="Tente opérations"  rotate={-2.5} delay={.07} />
           <CHEPhoto src="/cyber/photomaton.jpeg" alt="L'équipe"          rotate={2}    delay={.13} />
@@ -309,6 +313,17 @@ export default function Cyber() {
         @media (max-width: 768px) {
           #cyber { padding: 64px 20px !important; }
           .cyber-grid { grid-template-columns: 1fr !important; }
+          .cyber-photos {
+            grid-template-columns: 1fr 1fr !important;
+            height: auto !important;
+          }
+          .cyber-photos > div:first-child {
+            grid-column: span 2;
+            height: 180px;
+          }
+          .cyber-photos > div:not(:first-child) {
+            height: 140px;
+          }
         }
       `}</style>
     </section>
